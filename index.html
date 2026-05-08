@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surafel Ketema — Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c10;
+  --surface: #0d1117;
+  --surface2: #111820;
+  --border: #1e2d3d;
+  --border2: #1a3a2a;
+  --green: #00ff88;
+  --green2: #00cc66;
+  --green-dim: rgba(0,255,136,0.08);
+  --green-dim2: rgba(0,255,136,0.15);
+  --cyan: #00e5ff;
+  --amber: #ffb800;
+  --red: #ff4444;
+  --text: #c9d1d9;
+  --text-dim: #6e7681;
+  --text-bright: #e6edf3;
+  --mono: 'Share Tech Mono', monospace;
+  --head: 'Rajdhani', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── Scanlines overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Grid bg pattern ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: rgba(8,12,16,0.9);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 0.05em;
+}
+
+.nav-brand span { color: var(--text-dim); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--green); }
+
+/* ── SECTIONS ── */
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 56px;
+  max-width: 100%;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-tag::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+}
+
+.hero-name {
+  font-family: var(--head);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin-bottom: 0.25rem;
+}
+
+.hero-name .accent { color: var(--green); }
+
+.hero-role {
+  font-family: var(--mono);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--text-dim);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-role .blink {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--green);
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-bio {
+  max-width: 520px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+  border-left: 2px solid var(--border);
+  padding-left: 1.25rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: var(--green2);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.btn-outline:hover {
+  background: var(--green-dim);
+  transform: translateY(-1px);
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-family: var(--head);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.02em;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.info-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.info-card-value {
+  font-size: 14px;
+  color: var(--text-bright);
+  line-height: 1.5;
+}
+
+.terminal-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.terminal-bar {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.terminal-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-left: 0.5rem;
+}
+
+.terminal-body {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.t-prompt { color: var(--green); }
+.t-cmd { color: var(--text-bright); }
+.t-out { color: var(--text-dim); }
+.t-val { color: var(--cyan); }
+.t-comment { color: var(--text-dim); font-style: italic; }
+.t-highlight { color: var(--amber); }
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.skill-card:hover {
+  border-color: var(--green);
+  background: var(--green-dim);
+}
+
+.skill-icon {
+  font-size: 22px;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.skill-name {
+  font-family: var(--head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 0.25rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--green-dim2);
+  color: var(--green2);
+  border: 1px solid rgba(0,255,136,0.2);
+}
+
+.tag.cyan {
+  background: rgba(0,229,255,0.08);
+  color: var(--cyan);
+  border-color: rgba(0,229,255,0.2);
+}
+
+.tag.amber {
+  background: rgba(255,184,0,0.08);
+  color: var(--amber);
+  border-color: rgba(255,184,0,0.2);
+}
+
+/* ── BAR SKILLS ── */
+.skill-bar-section {
+  margin-top: 2.5rem;
+}
+
+.skill-bar-row {
+  margin-bottom: 1rem;
+}
+
+.skill-bar-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.skill-bar-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+
+.skill-bar-pct {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.skill-bar-track {
+  height: 4px;
+  background: var(--surface2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+.skill-bar-fill.animate { transform: scaleX(1); }
+
+/* ── PROJECT ── */
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.project-card:hover { border-color: var(--green); }
+
+.project-header {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-title {
+  font-family: var(--head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.project-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: rgba(0,255,136,0.12);
+  color: var(--green);
+  border: 1px solid rgba(0,255,136,0.3);
+  letter-spacing: 0.08em;
+}
+
+.project-body { padding: 1.5rem; }
+
+.project-desc {
+  color: var(--text);
+  font-size: 14px;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.project-features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.project-features li {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.project-features li::before {
+  content: '▸';
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ── CODE SNIPPET ── */
+.code-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.code-comment { color: var(--text-dim); }
+.code-keyword { color: #ff7b72; }
+.code-func { color: #d2a8ff; }
+.code-string { color: #a5d6ff; }
+.code-num { color: var(--amber); }
+.code-normal { color: var(--text); }
+
+/* ── GOALS / INSA section ── */
+.goal-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.goal-card-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.4rem;
+}
+
+.goal-card-title {
+  font-family: var(--head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 0.4rem;
+}
+
+.goal-card-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-item:hover {
+  border-color: var(--green);
+  background: var(--green-dim);
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--green);
+  text-transform: uppercase;
+}
+
+.contact-value {
+  font-size: 13px;
+  color: var(--text-bright);
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+footer span { color: var(--green); }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 1rem 0;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* stagger delays */
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+  section { padding: 3rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-name { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span>~/</span>surafel-ketema</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#project">project</a></li>
+    <li><a href="#goals">insa</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Security Enthusiast &amp; HNS Student</div>
+  <h1 class="hero-name">Surafel<br><span class="accent">Ketema</span></h1>
+  <p class="hero-role">Network &amp; Cybersecurity Student_<span class="blink"></span></p>
+  <p class="hero-bio">
+    2nd year Hardware &amp; Networking student at N/S/L, Ethiopia.
+    Passionate about penetration testing, network administration,
+    and Linux systems. Currently applying for the INSA Summer Camp
+    Cybersecurity Program to sharpen my offensive security skills.
+  </p>
+  <div class="hero-buttons">
+    <a href="#project" class="btn btn-primary">&#9654; view project</a>
+    <a href="https://github.com/surafel2727" class="btn btn-outline" target="_blank">&#128279; github</a>
+    <a href="#contact" class="btn btn-outline">&#9993; contact</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-num">01.</span>
+    <h2 class="section-title">whoami</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="info-card fade-up">
+      <div class="info-card-label">Full name</div>
+      <div class="info-card-value">Surafel Ketema</div>
+    </div>
+    <div class="info-card fade-up">
+      <div class="info-card-label">Date of birth</div>
+      <div class="info-card-value">November 06, 2005</div>
+    </div>
+    <div class="info-card fade-up">
+      <div class="info-card-label">Institution</div>
+      <div class="info-card-value">N/S/L — HNS (Hardware &amp; Networking)<br>2nd Year</div>
+    </div>
+    <div class="info-card fade-up">
+      <div class="info-card-label">Location</div>
+      <div class="info-card-value">Addis Ababa, Ethiopia</div>
+    </div>
+  </div>
+
+  <div class="terminal-block fade-up" style="margin-top:2rem">
+    <div class="terminal-bar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <span class="terminal-title">bash — surafel@kali ~</span>
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">surafel@kali</span><span class="t-cmd"> $ cat about.txt</span></div>
+      <div class="t-out"><br>I am a student and security enthusiast based in Ethiopia.</div>
+      <div class="t-out">Deep passion for ricing Linux environments (I use <span class="t-val">Kali</span>)</div>
+      <div class="t-out">and building tools with a distinct purpose.</div>
+      <br>
+      <div class="t-out">I focus on <span class="t-highlight">Cybersecurity</span> and <span class="t-highlight">Network Administration</span>,</div>
+      <div class="t-out">specifically penetration testing and network monitoring.</div>
+      <br>
+      <div class="t-out">When not at the keyboard — troubleshooting hardware,</div>
+      <div class="t-out">salvaging components, or repairing peripherals.</div>
+      <br>
+      <div><span class="t-prompt">surafel@kali</span><span class="t-cmd"> $ _</span><span class="blink"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-num">02.</span>
+    <h2 class="section-title">tech stack</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <span class="skill-icon">&#128275;</span>
+      <div class="skill-name">Security</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:0.25rem">Tools &amp; techniques</div>
+      <div class="skill-tags">
+        <span class="tag">Kali Linux</span>
+        <span class="tag">Parrot OS</span>
+        <span class="tag">Nmap</span>
+        <span class="tag">Netstat</span>
+        <span class="tag">Wireshark</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <span class="skill-icon">&#128272;</span>
+      <div class="skill-name">Networking</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:0.25rem">Protocols &amp; concepts</div>
+      <div class="skill-tags">
+        <span class="tag cyan">TCP/IP</span>
+        <span class="tag cyan">DNS</span>
+        <span class="tag cyan">DHCP</span>
+        <span class="tag cyan">HTTP/S</span>
+        <span class="tag cyan">SSH</span>
+        <span class="tag cyan">FTP</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <span class="skill-icon">&#128187;</span>
+      <div class="skill-name">Programming</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:0.25rem">Languages &amp; tools</div>
+      <div class="skill-tags">
+        <span class="tag amber">Python</span>
+        <span class="tag amber">JavaScript</span>
+        <span class="tag amber">TypeScript</span>
+        <span class="tag amber">Git</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <span class="skill-icon">&#128250;</span>
+      <div class="skill-name">Systems</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:0.25rem">OS &amp; environments</div>
+      <div class="skill-tags">
+        <span class="tag">Arch Linux</span>
+        <span class="tag">Windows</span>
+        <span class="tag">Zsh</span>
+        <span class="tag">Hardware</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-bar-section fade-up">
+    <div class="skill-bar-row">
+      <div class="skill-bar-top">
+        <span class="skill-bar-name">Linux &amp; System Administration</span>
+        <span class="skill-bar-pct">80%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.80"></div></div>
+    </div>
+    <div class="skill-bar-row">
+      <div class="skill-bar-top">
+        <span class="skill-bar-name">Networking Fundamentals</span>
+        <span class="skill-bar-pct">75%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+    </div>
+    <div class="skill-bar-row">
+      <div class="skill-bar-top">
+        <span class="skill-bar-name">Python Scripting</span>
+        <span class="skill-bar-pct">60%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.60"></div></div>
+    </div>
+    <div class="skill-bar-row">
+      <div class="skill-bar-top">
+        <span class="skill-bar-name">Penetration Testing Basics</span>
+        <span class="skill-bar-pct">55%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.55"></div></div>
+    </div>
+    <div class="skill-bar-row">
+      <div class="skill-bar-top">
+        <span class="skill-bar-name">Hardware &amp; Physical Security</span>
+        <span class="skill-bar-pct">70%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="section-header fade-up">
+    <span class="section-num">03.</span>
+    <h2 class="section-title">project</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="project-card fade-up">
+    <div class="project-header">
+      <div class="project-title">
+        &#128270; NetScan — Python Network Scanner
+        <span class="project-badge">FEATURED</span>
+      </div>
+      <a href="https://github.com/surafel2727/network-scanner" class="btn btn-outline" target="_blank" style="font-size:11px;padding:0.4rem 1rem">&#8599; github</a>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">
+        A lightweight network scanner built entirely in Python's standard library — no external packages required.
+        Discovers active hosts on a network, identifies open ports, resolves hostnames via reverse DNS,
+        and exports timestamped scan reports. Built to understand how tools like Nmap work under the hood.
+      </p>
+
+      <ul class="project-features">
+        <li>TCP-based host discovery — detects online devices without requiring root/ICMP ping</li>
+        <li>Scans 15 well-known ports (HTTP, SSH, FTP, RDP, MySQL, etc.) per host</li>
+        <li>Reverse DNS resolution — maps IP addresses to device hostnames</li>
+        <li>Multi-threaded scanning with Python's <code style="color:var(--cyan);background:rgba(0,229,255,0.1);padding:1px 5px;border-radius:3px">concurrent.futures</code> for parallel execution</li>
+        <li>Supports single IPs and CIDR ranges (e.g. 192.168.1.0/24)</li>
+        <li>Saves full results to a timestamped report file automatically</li>
+        <li>200+ lines, fully documented — every function and concept explained in comments</li>
+      </ul>
+
+      <div class="project-tech">
+        <span class="tag">Python 3.8+</span>
+        <span class="tag">socket</span>
+        <span class="tag">ipaddress</span>
+        <span class="tag">threading</span>
+        <span class="tag cyan">TCP/IP</span>
+        <span class="tag cyan">DNS</span>
+        <span class="tag cyan">CIDR</span>
+        <span class="tag amber">Kali Linux</span>
+      </div>
+
+      <div class="code-block">
+<span class="code-comment"># Example: scanning a local network</span>
+<span class="code-normal">$ python3 scanner.py</span>
+<br>
+<span class="code-comment">  Target &gt; </span><span class="code-string">192.168.1.0/24</span>
+<br>
+<span class="code-comment">  [*] Scanning 254 hosts on 15 ports...</span>
+<br>
+<span class="code-keyword">  [+]</span> <span class="code-func">Found:</span> <span class="code-num">192.168.1.1</span>  <span class="code-comment">→ router.local</span>
+<span class="code-comment">       [OPEN] Port   80  →  HTTP</span>
+<span class="code-comment">       [OPEN] Port  443  →  HTTPS</span>
+<span class="code-comment">       [OPEN] Port   22  →  SSH</span>
+<br>
+<span class="code-comment">  Scan complete. 3 hosts found. Report saved.</span>
+      </div>
+
+      <div class="project-links" style="margin-top:1.5rem">
+        <a href="https://github.com/surafel2727/network-scanner" class="btn btn-primary" target="_blank">&#8599; view on github</a>
+        <a href="https://github.com/surafel2727/network-scanner/blob/main/scanner.py" class="btn btn-outline" target="_blank">&#128196; source code</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS / INSA -->
+<section id="goals">
+  <div class="section-header fade-up">
+    <span class="section-num">04.</span>
+    <h2 class="section-title">why INSA summer camp</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="goal-card fade-up">
+    <div class="goal-card-num">REASON 01</div>
+    <div class="goal-card-title">Deepen hands-on offensive security skills</div>
+    <div class="goal-card-text">I have a foundation in networking and basic penetration testing, but I want structured, real-world offensive security training. INSA's program offers exactly that — guided labs and mentors who work in the field.</div>
+  </div>
+
+  <div class="goal-card fade-up">
+    <div class="goal-card-num">REASON 02</div>
+    <div class="goal-card-title">Contribute to Ethiopia's cybersecurity future</div>
+    <div class="goal-card-text">Ethiopia needs a generation of skilled defenders and ethical hackers. I want to be part of building that — starting by learning properly through INSA, then giving back to my community and country.</div>
+  </div>
+
+  <div class="goal-card fade-up">
+    <div class="goal-card-num">REASON 03</div>
+    <div class="goal-card-title">Bridge theory with practice</div>
+    <div class="goal-card-text">My HNS program covers networking theory well, but practical security labs are limited. INSA Summer Camp bridges that gap — letting me apply what I already know in a real cybersecurity environment.</div>
+  </div>
+
+  <div class="goal-card fade-up">
+    <div class="goal-card-num">REASON 04</div>
+    <div class="goal-card-title">Build a career foundation in security</div>
+    <div class="goal-card-text">My long-term goal is to work in penetration testing and network defense. Completing INSA's program, earning certifications, and connecting with security professionals will help me get there.</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-num">05.</span>
+    <h2 class="section-title">contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="fade-up" style="color:var(--text-dim);font-size:14px;max-width:480px">
+    Reach out for any questions about my application, project, or background.
+  </p>
+  <div class="contact-grid">
+    <a href="mailto:surafelketemaf@gmail.com" class="contact-item fade-up">
+      <span class="contact-label">&#9993; Email</span>
+      <span class="contact-value">surafelketemaf@gmail.com</span>
+    </a>
+    <a href="https://github.com/surafel2727" class="contact-item fade-up" target="_blank">
+      <span class="contact-label">&#128279; GitHub</span>
+      <span class="contact-value">github.com/surafel2727</span>
+    </a>
+    <div class="contact-item fade-up">
+      <span class="contact-label">&#127979; Institution</span>
+      <span class="contact-value">N/S/L — Hardware &amp; Networking, 2nd Year</span>
+    </div>
+    <div class="contact-item fade-up">
+      <span class="contact-label">&#127757; Location</span>
+      <span class="contact-value">Addis Ababa, Ethiopia</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built by <span>surafel ketema</span> &mdash; github.com/surafel2727 &mdash; 2026
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      const fill = e.target.querySelector('.skill-bar-fill');
+      if (fill) setTimeout(() => fill.classList.add('animate'), 200);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
